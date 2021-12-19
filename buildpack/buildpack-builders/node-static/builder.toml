@@ -1,0 +1,6 @@
+[[order]]
+
+[stack]
+id = "tech.monstrs.stacks.node-static"
+run-image = "monstrs/stack-node-static:run"
+build-image = "monstrs/stack-node-static:build"

@@ -1,0 +1,19 @@
+{
+  "name": "@monstrs/buildpack-yarn-install",
+  "version": "0.0.1",
+  "private": true,
+  "license": "MIT",
+  "main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "prebuild": "yarn clean",
+    "build": "yarn service build",
+    "clean": "rm -r -f dist"
+  },
+  "dependencies": {
+    "@monstrs/buildpack-core": "workspace:0.0.1",
+    "execa": "^5.1.1"
+  }
+}

@@ -1,0 +1,6 @@
+[[order]]
+
+[stack]
+id = "tech.monstrs.stacks.operator"
+run-image = "monstrs/stack-operator:run"
+build-image = "monstrs/stack-operator:build"

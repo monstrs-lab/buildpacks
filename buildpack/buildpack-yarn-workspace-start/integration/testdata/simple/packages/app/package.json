@@ -1,0 +1,14 @@
+{
+  "name": "@simple/app",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "license": "MIT",
+  "author": "",
+  "main": "dist/index.js",
+  "dependencies": {
+    "leftpad": "^0.0.1"
+  }
+}

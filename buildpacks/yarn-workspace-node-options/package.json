@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@monstrs/buildpack-core": "workspace:0.0.1",
+    "@yarnpkg/core": "^3.2.0-rc.8",
+    "@yarnpkg/fslib": "^2.6.1-rc.3",
     "execa": "^5.1.1"
   },
   "devDependencies": {

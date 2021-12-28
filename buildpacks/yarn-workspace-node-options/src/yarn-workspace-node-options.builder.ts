@@ -19,13 +19,17 @@ export class YarnWorkspaceNodeOptionsBuilder implements Builder {
 
     const layer = ctx.layers.get('node-options', true, true, true)
 
-    //await xfs.mkdirPromise(ppath.join(layer.path as PortablePath, 'env' as PortablePath))
+    //if (!(await xfs.existsPromise(ppath.join(layer.path as PortablePath, 'env' as PortablePath)))) {
+    //  await xfs.mkdirPromise(ppath.join(layer.path as PortablePath, 'env' as PortablePath))
+    //}
+    
     //if (!(await xfs.existsPromise(ppath.join(layer.path as PortablePath, 'env.launch' as PortablePath)))) {
     //  await xfs.mkdirPromise(ppath.join(layer.path as PortablePath, 'env.launch' as PortablePath))
     //}
 
     //await xfs.writeFilePromise(ppath.join(layer.path as PortablePath, 'env/NODE_OPTIONS' as PortablePath), nodeOptions)
-    //await xfs.writeFilePromise(ppath.join(layer.path as PortablePath, 'env/PWD' as PortablePath), '/workspace/operators/preview-operator')
     //await xfs.writeFilePromise(ppath.join(layer.path as PortablePath, 'env.launch/NODE_OPTIONS' as PortablePath), nodeOptions)
+
+    //await xfs.writeFilePromise(ppath.join(layer.path as PortablePath, 'env/CNB_APP_DIR' as PortablePath), '/workspace/operators/preview-operator')
   }
 }

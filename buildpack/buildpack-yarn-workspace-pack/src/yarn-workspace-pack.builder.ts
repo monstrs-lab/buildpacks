@@ -27,7 +27,7 @@ export class YarnWorkspacePackBuilder implements Builder {
 
       await execUtils.pipevp(
         'yarn',
-        ['workspace', workspace, 'pack', 'workspace', '--destination', cwd],
+        ['workspace', workspace, 'image', 'source', '--destination', cwd],
         {
           cwd: project,
           env: process.env,

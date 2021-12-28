@@ -1,6 +1,0 @@
-[[order]]
-
-[stack]
-id = "tech.monstrs.stacks.node"
-run-image = "monstrs/stack-node:run"
-build-image = "monstrs/stack-node:build"

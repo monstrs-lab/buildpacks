@@ -4,7 +4,8 @@
   "private": true,
   "license": "MIT",
   "workspaces": [
-    "buildpack/*"
+    "buildpacks/*",
+    "packages/*"
   ],
   "devDependencies": {
     "@jest/core": "^27.4.5",

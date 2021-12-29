@@ -1,6 +1,7 @@
 import execa             from 'execa'
-import fs                from 'fs'
+import fs, { readFileSync }                from 'fs'
 import path              from 'path'
+import { join } from 'path'
 
 import { Detector }      from '@monstrs/buildpack-core'
 import { DetectContext } from '@monstrs/buildpack-core'
@@ -28,6 +29,8 @@ export class YarnWorkspaceStartDetector implements Detector {
 
     const entrypoint = `${workspace.location}/dist/index.js`
 
+    const pkgjson = JSON.parse(readFileSync(join(workspace.location, 'package.json'), 'utf-8'))
+
     return {
       provides: [
         {
@@ -39,6 +42,8 @@ export class YarnWorkspaceStartDetector implements Detector {
           name: 'yarn-workspace-start',
           metadata: {
             entrypoint,
+            location: workspace.location,
+            command: pkgjson.scripts?.start || 'node dist/index.js'
           },
         },
       ],

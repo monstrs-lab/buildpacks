@@ -978,9 +978,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@monstrs/buildpack-node-start@workspace:buildpacks/buildpack-node-start":
+"@monstrs/buildpack-node-start@workspace:buildpacks/node-start":
   version: 0.0.0-use.local
-  resolution: "@monstrs/buildpack-node-start@workspace:buildpacks/buildpack-node-start"
+  resolution: "@monstrs/buildpack-node-start@workspace:buildpacks/node-start"
   dependencies:
     "@babel/core": ^7.16.5
     "@babel/plugin-proposal-async-generator-functions": ^7.16.5
@@ -997,37 +997,18 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@monstrs/buildpack-yarn-install@workspace:buildpacks/buildpack-yarn-install":
+"@monstrs/buildpack-yarn-install@workspace:buildpacks/yarn-install":
   version: 0.0.0-use.local
-  resolution: "@monstrs/buildpack-yarn-install@workspace:buildpacks/buildpack-yarn-install"
+  resolution: "@monstrs/buildpack-yarn-install@workspace:buildpacks/yarn-install"
   dependencies:
     "@monstrs/buildpack-core": "workspace:0.0.1"
     execa: ^5.1.1
   languageName: unknown
   linkType: soft
 
-"@monstrs/buildpack-yarn-workspace-build@workspace:buildpacks/buildpack-yarn-workspace-build":
+"@monstrs/buildpack-yarn-workspace-build@workspace:buildpacks/yarn-workspace-build":
   version: 0.0.0-use.local
-  resolution: "@monstrs/buildpack-yarn-workspace-build@workspace:buildpacks/buildpack-yarn-workspace-build"
-  dependencies:
-    "@babel/core": ^7.16.5
-    "@babel/plugin-proposal-async-generator-functions": ^7.16.5
-    "@babel/plugin-proposal-class-properties": ^7.16.5
-    "@babel/plugin-proposal-decorators": ^7.16.5
-    "@babel/plugin-proposal-nullish-coalescing-operator": ^7.16.5
-    "@babel/plugin-proposal-optional-chaining": ^7.16.5
-    "@babel/plugin-transform-modules-commonjs": ^7.16.5
-    "@babel/preset-typescript": ^7.16.5
-    "@babel/runtime": ^7.16.5
-    "@babel/types": ^7.16.0
-    "@monstrs/buildpack-core": "workspace:0.0.1"
-    execa: ^5.1.1
-  languageName: unknown
-  linkType: soft
-
-"@monstrs/buildpack-yarn-workspace-node-options@workspace:buildpacks/buildpack-yarn-workspace-node-options":
-  version: 0.0.0-use.local
-  resolution: "@monstrs/buildpack-yarn-workspace-node-options@workspace:buildpacks/buildpack-yarn-workspace-node-options"
+  resolution: "@monstrs/buildpack-yarn-workspace-build@workspace:buildpacks/yarn-workspace-build"
   dependencies:
     "@babel/core": ^7.16.5
     "@babel/plugin-proposal-async-generator-functions": ^7.16.5
@@ -1044,9 +1025,30 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@monstrs/buildpack-yarn-workspace-pack@workspace:buildpacks/buildpack-yarn-workspace-pack":
+"@monstrs/buildpack-yarn-workspace-node-options@workspace:buildpacks/yarn-workspace-node-options":
   version: 0.0.0-use.local
-  resolution: "@monstrs/buildpack-yarn-workspace-pack@workspace:buildpacks/buildpack-yarn-workspace-pack"
+  resolution: "@monstrs/buildpack-yarn-workspace-node-options@workspace:buildpacks/yarn-workspace-node-options"
+  dependencies:
+    "@babel/core": ^7.16.5
+    "@babel/plugin-proposal-async-generator-functions": ^7.16.5
+    "@babel/plugin-proposal-class-properties": ^7.16.5
+    "@babel/plugin-proposal-decorators": ^7.16.5
+    "@babel/plugin-proposal-nullish-coalescing-operator": ^7.16.5
+    "@babel/plugin-proposal-optional-chaining": ^7.16.5
+    "@babel/plugin-transform-modules-commonjs": ^7.16.5
+    "@babel/preset-typescript": ^7.16.5
+    "@babel/runtime": ^7.16.5
+    "@babel/types": ^7.16.0
+    "@monstrs/buildpack-core": "workspace:0.0.1"
+    "@yarnpkg/core": ^3.2.0-rc.8
+    "@yarnpkg/fslib": ^2.6.1-rc.3
+    execa: ^5.1.1
+  languageName: unknown
+  linkType: soft
+
+"@monstrs/buildpack-yarn-workspace-pack@workspace:buildpacks/yarn-workspace-pack":
+  version: 0.0.0-use.local
+  resolution: "@monstrs/buildpack-yarn-workspace-pack@workspace:buildpacks/yarn-workspace-pack"
   dependencies:
     "@babel/core": ^7.16.5
     "@babel/plugin-proposal-async-generator-functions": ^7.16.5
@@ -1067,9 +1069,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@monstrs/buildpack-yarn-workspace-serve@workspace:buildpacks/buildpack-yarn-workspace-serve":
+"@monstrs/buildpack-yarn-workspace-serve@workspace:buildpacks/yarn-workspace-serve":
   version: 0.0.0-use.local
-  resolution: "@monstrs/buildpack-yarn-workspace-serve@workspace:buildpacks/buildpack-yarn-workspace-serve"
+  resolution: "@monstrs/buildpack-yarn-workspace-serve@workspace:buildpacks/yarn-workspace-serve"
   dependencies:
     "@monstrs/buildpack-core": "workspace:0.0.1"
     "@yarnpkg/core": ^3.2.0-rc.8
@@ -1077,9 +1079,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@monstrs/buildpack-yarn-workspace-start@workspace:buildpacks/buildpack-yarn-workspace-start":
+"@monstrs/buildpack-yarn-workspace-start@workspace:buildpacks/yarn-workspace-start":
   version: 0.0.0-use.local
-  resolution: "@monstrs/buildpack-yarn-workspace-start@workspace:buildpacks/buildpack-yarn-workspace-start"
+  resolution: "@monstrs/buildpack-yarn-workspace-start@workspace:buildpacks/yarn-workspace-start"
   dependencies:
     "@babel/core": ^7.16.5
     "@babel/plugin-proposal-async-generator-functions": ^7.16.5

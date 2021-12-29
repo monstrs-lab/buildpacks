@@ -12,6 +12,7 @@ import { BuildResult }  from '@monstrs/buildpack-core'
 
 export class YarnWorkspacePackBuilder implements Builder {
   async build(ctx: BuildContext): Promise<BuildResult> {
+    /*
     const entry = ctx.plan.getEntry('yarn-workspace-pack')
 
     if (entry) {
@@ -83,5 +84,6 @@ export class YarnWorkspacePackBuilder implements Builder {
         env: process.env,
       })
     }
+    */
   }
 }

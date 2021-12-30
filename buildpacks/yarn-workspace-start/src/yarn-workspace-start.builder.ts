@@ -1,9 +1,9 @@
-import { writeFileSync } from 'fs'
-import { chmodSync } from 'fs'
+import { writeFile } from 'node:fs/promises'
+import { chmod }     from 'node:fs/promises'
 
-import { Builder }      from '@monstrs/buildpack-core'
-import { BuildContext } from '@monstrs/buildpack-core'
-import { BuildResult }  from '@monstrs/buildpack-core'
+import { Builder }       from '@monstrs/buildpack-core'
+import { BuildContext }  from '@monstrs/buildpack-core'
+import { BuildResult }   from '@monstrs/buildpack-core'
 
 export class YarnWorkspaceStartBuilder implements Builder {
   async build(ctx: BuildContext): Promise<BuildResult> {
@@ -12,8 +12,8 @@ export class YarnWorkspaceStartBuilder implements Builder {
     const location = entry?.metadata?.location || '/workspace'
     const command = entry?.metadata.command
 
-    writeFileSync('/workspace/run.sh', `#!/usr/bin/env bash\ncd ${location} && ${command}`)
-    chmodSync('/workspace/run.sh', '755')
+    await writeFile('/workspace/run.sh', `#!/usr/bin/env bash\ncd ${location} && ${command}`)
+    await chmod('/workspace/run.sh', '755')
 
     ctx.addWebProcess(['./run.sh'])
   }

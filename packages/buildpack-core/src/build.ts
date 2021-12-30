@@ -24,9 +24,6 @@ export const build = async (builder: Builder, config: Config) => {
 
     context.layers.save()
     context.launch.save(context.layers.path)
-    context.sharedEnv.save(context.layers.path)
-    context.buildEnv.save(context.layers.path)
-    context.launchEnv.save(context.layers.path)
   } catch (error) {
     ExitHandler.error(error)
   }

@@ -12,8 +12,8 @@ export class YarnWorkspaceNodeOptionsDetector implements Detector {
     const nodeOptions: Array<string> = []
 
     //if (fs.existsSync(pnppath)) {
-      nodeOptions.push('--require')
-      nodeOptions.push(pnppath)
+    nodeOptions.push('--require')
+    nodeOptions.push(pnppath)
     //}
 
     if (nodeOptions.length === 0) {

@@ -1,3 +1,5 @@
+import { join } from 'node:path'
+
 import { Layer } from './layer'
 
 export class Layers {
@@ -5,26 +7,32 @@ export class Layers {
 
   constructor(readonly path: string) {}
 
-  get(
+  async get(
     name: string,
     build: boolean = false,
     cache: boolean = false,
     launch: boolean = false
-  ): Layer {
+  ): Promise<Layer> {
     if (this.layers.has(name)) {
       return this.layers.get(name)!
     }
 
-    const layer = Layer.create(name, this.path, build, cache, launch)
+    const layer = new Layer(join(this.path, name))
+
+    await layer.load()
+
+    layer.build = build
+    layer.cache = cache
+    layer.launch = launch
 
     this.layers.set(name, layer)
 
     return layer
   }
 
-  save() {
-    for (const layer of this.layers.values()) {
-      layer.save()
+  async save() {
+    for await (const layer of this.layers.values()) {
+      await layer.dump()
     }
   }
 }

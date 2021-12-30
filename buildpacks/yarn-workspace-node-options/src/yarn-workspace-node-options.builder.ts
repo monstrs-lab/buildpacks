@@ -14,15 +14,15 @@ export class YarnWorkspaceNodeOptionsBuilder implements Builder {
     const { nodeOptions }: { nodeOptions?: string } = entry?.metadata || {}
 
     if (nodeOptions) {
-      ctx.addLaunchEnv('NODE_OPTIONS', nodeOptions)
+      //ctx.addLaunchEnv('NODE_OPTIONS', nodeOptions)
     }
 
-    const layer = ctx.layers.get('node-options', true, true, true)
+    //const layer = await ctx.layers.get('node-options', true, true, true)
 
     //if (!(await xfs.existsPromise(ppath.join(layer.path as PortablePath, 'env' as PortablePath)))) {
     //  await xfs.mkdirPromise(ppath.join(layer.path as PortablePath, 'env' as PortablePath))
     //}
-    
+
     //if (!(await xfs.existsPromise(ppath.join(layer.path as PortablePath, 'env.launch' as PortablePath)))) {
     //  await xfs.mkdirPromise(ppath.join(layer.path as PortablePath, 'env.launch' as PortablePath))
     //}

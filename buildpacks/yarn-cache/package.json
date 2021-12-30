@@ -1,5 +1,5 @@
 {
-  "name": "@monstrs/buildpack-yarn-workspace-pack",
+  "name": "@monstrs/buildpack-yarn-cache",
   "version": "0.0.1",
   "private": true,
   "license": "MIT",

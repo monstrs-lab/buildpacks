@@ -1,7 +1,7 @@
 api = "0.2"
 
 [buildpack]
-id = "tech.monstrs.buildpacks.yarn-workspace-pack"
+id = "tech.monstrs.buildpacks.yarn-cache"
 version = "0.0.3"
 name = "Yarn Workspace Pack Buildpack"
 
@@ -12,8 +12,3 @@ pre_package = "yarn build"
 [[stacks]]
 id = "tech.monstrs.stacks.node"
 
-[[stacks]]
-id = "tech.monstrs.stacks.node-static"
-
-[[stacks]]
-id = "tech.monstrs.stacks.operator"

@@ -20,6 +20,6 @@ export class YarnWorkspaceStartBuilder implements Builder {
 
     const nodeOptionsLayer = await ctx.layers.get('node-options', true, true, true)
 
-    nodeOptionsLayer.launchEnv.append(['--require', join(ctx.workingDir, '.pnp.cjs')].join(' '), ' ')
+    nodeOptionsLayer.launchEnv.append('NODE_OPTIONS', ['--require', join(ctx.workingDir, '.pnp.cjs')].join(' '), ' ')
   }
 }

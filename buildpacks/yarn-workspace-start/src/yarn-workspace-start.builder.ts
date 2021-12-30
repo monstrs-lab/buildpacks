@@ -1,5 +1,6 @@
 import { writeFile } from 'node:fs/promises'
 import { chmod }     from 'node:fs/promises'
+import { join } from 'node:path'
 
 import { Builder }       from '@monstrs/buildpack-core'
 import { BuildContext }  from '@monstrs/buildpack-core'
@@ -16,5 +17,9 @@ export class YarnWorkspaceStartBuilder implements Builder {
     await chmod('/workspace/run.sh', '755')
 
     ctx.addWebProcess(['./run.sh'])
+
+    const nodeOptionsLayer = await ctx.layers.get('node-options', true, true, true)
+
+    nodeOptionsLayer.launchEnv.append(['--require', join(ctx.workingDir, '.pnp.cjs')].join(' '), ' ')
   }
 }

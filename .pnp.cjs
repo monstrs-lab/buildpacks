@@ -25,6 +25,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         "reference": "workspace:buildpacks/node-start"
       },
       {
+        "name": "@monstrs/buildpack-yarn-cache",
+        "reference": "workspace:buildpacks/yarn-cache"
+      },
+      {
         "name": "@monstrs/buildpack-yarn-install",
         "reference": "workspace:buildpacks/yarn-install"
       },
@@ -35,10 +39,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
       {
         "name": "@monstrs/buildpack-yarn-workspace-node-options",
         "reference": "workspace:buildpacks/yarn-workspace-node-options"
-      },
-      {
-        "name": "@monstrs/buildpack-yarn-workspace-pack",
-        "reference": "workspace:buildpacks/yarn-workspace-pack"
       },
       {
         "name": "@monstrs/buildpack-yarn-workspace-serve",
@@ -58,10 +58,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
     "fallbackExclusionList": [
       ["@monstrs/buildpack-core", ["workspace:packages/buildpack-core"]],
       ["@monstrs/buildpack-node-start", ["workspace:buildpacks/node-start"]],
+      ["@monstrs/buildpack-yarn-cache", ["workspace:buildpacks/yarn-cache"]],
       ["@monstrs/buildpack-yarn-install", ["workspace:buildpacks/yarn-install"]],
       ["@monstrs/buildpack-yarn-workspace-build", ["workspace:buildpacks/yarn-workspace-build"]],
       ["@monstrs/buildpack-yarn-workspace-node-options", ["workspace:buildpacks/yarn-workspace-node-options"]],
-      ["@monstrs/buildpack-yarn-workspace-pack", ["workspace:buildpacks/yarn-workspace-pack"]],
       ["@monstrs/buildpack-yarn-workspace-serve", ["workspace:buildpacks/yarn-workspace-serve"]],
       ["@monstrs/buildpack-yarn-workspace-start", ["workspace:buildpacks/yarn-workspace-start"]],
       ["buildpack", ["workspace:."]]
@@ -1637,6 +1637,31 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "SOFT",
         }]
       ]],
+      ["@monstrs/buildpack-yarn-cache", [
+        ["workspace:buildpacks/yarn-cache", {
+          "packageLocation": "./buildpacks/yarn-cache/",
+          "packageDependencies": [
+            ["@monstrs/buildpack-yarn-cache", "workspace:buildpacks/yarn-cache"],
+            ["@babel/core", "npm:7.16.5"],
+            ["@babel/plugin-proposal-async-generator-functions", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
+            ["@babel/plugin-proposal-class-properties", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
+            ["@babel/plugin-proposal-decorators", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
+            ["@babel/plugin-proposal-nullish-coalescing-operator", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
+            ["@babel/plugin-proposal-optional-chaining", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
+            ["@babel/plugin-transform-modules-commonjs", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
+            ["@babel/preset-typescript", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
+            ["@babel/runtime", "npm:7.16.5"],
+            ["@babel/types", "npm:7.16.0"],
+            ["@monstrs/buildpack-core", "workspace:packages/buildpack-core"],
+            ["@yarnpkg/core", "npm:3.2.0-rc.8"],
+            ["@yarnpkg/fslib", "npm:2.6.1-rc.3"],
+            ["execa", "npm:5.1.1"],
+            ["tempy", "npm:1.0.1"],
+            ["yaml", "npm:1.10.2"]
+          ],
+          "linkType": "SOFT",
+        }]
+      ]],
       ["@monstrs/buildpack-yarn-install", [
         ["workspace:buildpacks/yarn-install", {
           "packageLocation": "./buildpacks/yarn-install/",
@@ -1688,31 +1713,6 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@yarnpkg/core", "npm:3.2.0-rc.8"],
             ["@yarnpkg/fslib", "npm:2.6.1-rc.3"],
             ["execa", "npm:5.1.1"]
-          ],
-          "linkType": "SOFT",
-        }]
-      ]],
-      ["@monstrs/buildpack-yarn-workspace-pack", [
-        ["workspace:buildpacks/yarn-workspace-pack", {
-          "packageLocation": "./buildpacks/yarn-workspace-pack/",
-          "packageDependencies": [
-            ["@monstrs/buildpack-yarn-workspace-pack", "workspace:buildpacks/yarn-workspace-pack"],
-            ["@babel/core", "npm:7.16.5"],
-            ["@babel/plugin-proposal-async-generator-functions", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
-            ["@babel/plugin-proposal-class-properties", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
-            ["@babel/plugin-proposal-decorators", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
-            ["@babel/plugin-proposal-nullish-coalescing-operator", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
-            ["@babel/plugin-proposal-optional-chaining", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
-            ["@babel/plugin-transform-modules-commonjs", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
-            ["@babel/preset-typescript", "virtual:0902d0401dca1848e408867e9022a84e4c6c8a7af6a4c1128ffc53b2be990221dddc28becd1a191d2da58c40a15d36f4e61c1d0b21e4a2a697424a73f526ef1f#npm:7.16.5"],
-            ["@babel/runtime", "npm:7.16.5"],
-            ["@babel/types", "npm:7.16.0"],
-            ["@monstrs/buildpack-core", "workspace:packages/buildpack-core"],
-            ["@yarnpkg/core", "npm:3.2.0-rc.8"],
-            ["@yarnpkg/fslib", "npm:2.6.1-rc.3"],
-            ["execa", "npm:5.1.1"],
-            ["tempy", "npm:1.0.1"],
-            ["yaml", "npm:1.10.2"]
           ],
           "linkType": "SOFT",
         }]

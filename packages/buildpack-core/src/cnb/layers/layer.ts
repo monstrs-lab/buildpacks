@@ -27,7 +27,7 @@ export class Layer {
 
   launchEnv: Environment
 
-  constructor(private readonly path: string) {}
+  constructor(readonly path: string) {}
 
   get name() {
     return dirname(this.path)
@@ -35,6 +35,14 @@ export class Layer {
 
   get metadataFile() {
     return `${this.path}.toml`
+  }
+
+  setMetadata(key: string, value: string | null): void {
+    this.metadata[key] = value
+  }
+
+  getMetadata(key: string) {
+    return this.metadata[key]
   }
 
   async load() {

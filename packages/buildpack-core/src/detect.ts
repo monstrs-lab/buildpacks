@@ -24,7 +24,7 @@ export const detect = async (detector: Detector, config: Config) => {
 
     if (result) {
       fs.writeFileSync(config.arguments[2], stringify(result))
-    } else {
+    } else if (result !== null) {
       ExitHandler.fail()
     }
   } catch (error) {

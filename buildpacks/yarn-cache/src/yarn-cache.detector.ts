@@ -1,3 +1,4 @@
+import { access } from 'node:fs/promises'
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 
@@ -7,14 +8,13 @@ import { DetectResult }  from '@monstrs/buildpack-core'
 
 export class YarnCacheDetector implements Detector {
   async detect(ctx: DetectContext): Promise<DetectResult> {
-    if (!existsSync(join(ctx.workingDir, 'yarn.lock'))) {
+    try {
+      await access(join(ctx.workingDir, 'yarn.lock'))
+      await access(join(ctx.workingDir, '.yarn/cache'))
+    } catch {
       return null
     }
-
-    if (!existsSync(join(ctx.workingDir, '.yarn/cache'))) {
-      return null
-    }
-
+    
     return {
       provides: [
         {

@@ -1,6 +1,6 @@
-import { access } from 'node:fs/promises'
-import { existsSync } from 'node:fs'
-import { join } from 'node:path'
+import { existsSync }    from 'node:fs'
+import { access }        from 'node:fs/promises'
+import { join }          from 'node:path'
 
 import { Detector }      from '@monstrs/buildpack-core'
 import { DetectContext } from '@monstrs/buildpack-core'
@@ -14,7 +14,7 @@ export class YarnCacheDetector implements Detector {
     } catch {
       return null
     }
-    
+
     return {
       provides: [
         {

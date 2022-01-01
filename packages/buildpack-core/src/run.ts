@@ -1,11 +1,11 @@
 import path            from 'path'
 
 import { ExitHandler } from './cnb'
-import { Detector }    from './cnb'
+import { Detector }    from './cnb/detect'
 import { Builder }     from './cnb'
 import { Config }      from './cnb'
 import { build }       from './build'
-import { detect }      from './detect'
+import { detect }      from './cnb/detect'
 
 export const run = async (detector: Detector, builder?: Builder) => {
   const config = new Config(process.argv.slice(1, process.argv.length))
@@ -18,7 +18,7 @@ export const run = async (detector: Detector, builder?: Builder) => {
 
   try {
     if (phase === 'detect') {
-      await detect(detector, config)
+      await detect(detector)
     } else if (phase === 'build') {
       if (builder) {
         await build(builder, config)

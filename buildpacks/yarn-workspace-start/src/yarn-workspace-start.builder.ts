@@ -1,10 +1,10 @@
-import { writeFile } from 'node:fs/promises'
-import { chmod }     from 'node:fs/promises'
-import { join } from 'node:path'
+import { writeFile }    from 'node:fs/promises'
+import { chmod }        from 'node:fs/promises'
+import { join }         from 'node:path'
 
-import { Builder }       from '@monstrs/buildpack-core'
-import { BuildContext }  from '@monstrs/buildpack-core'
-import { BuildResult }   from '@monstrs/buildpack-core'
+import { Builder }      from '@monstrs/buildpack-core'
+import { BuildContext } from '@monstrs/buildpack-core'
+import { BuildResult }  from '@monstrs/buildpack-core'
 
 export class YarnWorkspaceStartBuilder implements Builder {
   async build(ctx: BuildContext): Promise<BuildResult> {
@@ -20,6 +20,10 @@ export class YarnWorkspaceStartBuilder implements Builder {
 
     const nodeOptionsLayer = await ctx.layers.get('node-options', true, true, true)
 
-    nodeOptionsLayer.launchEnv.append('NODE_OPTIONS', ['--require', join(ctx.workingDir, '.pnp.cjs')].join(' '), ' ')
+    nodeOptionsLayer.launchEnv.append(
+      'NODE_OPTIONS',
+      ['--require', join(ctx.workingDir, '.pnp.cjs')].join(' '),
+      ' '
+    )
   }
 }

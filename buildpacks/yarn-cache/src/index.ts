@@ -1,4 +1,4 @@
-import { run }                       from '@monstrs/buildpack-core'
+import { run }               from '@monstrs/buildpack-core'
 
 import { YarnCacheBuilder }  from './yarn-cache.builder'
 import { YarnCacheDetector } from './yarn-cache.detector'

@@ -1,5 +1,5 @@
-import { access } from 'node:fs/promises'
-import { join }              from 'node:path'
+import { access }        from 'node:fs/promises'
+import { join }          from 'node:path'
 
 import { Detector }      from '@monstrs/buildpack-core'
 import { DetectContext } from '@monstrs/buildpack-core'

@@ -1,6 +1,6 @@
-import { BuildpackPlan }     from './buildpack.plan'
-import { Launch }            from './launch'
-import { Layers }            from './layers'
+import { BuildpackPlan } from './buildpack.plan'
+import { Launch }        from './launch'
+import { Layers }        from './layers'
 
 export class BuildContext {
   launch = new Launch()

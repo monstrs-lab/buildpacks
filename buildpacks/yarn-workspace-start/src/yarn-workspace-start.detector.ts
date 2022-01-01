@@ -38,6 +38,8 @@ export class YarnWorkspaceStartDetector implements Detector {
     const pkgjson = JSON.parse(readFileSync(join(workspace.location, 'package.json'), 'utf-8'))
 
     result.passed = true
+console.log('detect - sfsdfsfsd')
+    return result
 
     result.plans.push(new BuildPlan([new BuildPlanProvide('yarn-workspace-start')]))
 

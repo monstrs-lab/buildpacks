@@ -13,13 +13,14 @@ import { BuildResult }  from '@monstrs/buildpack-core'
 export class YarnCacheBuilder implements Builder {
   async build(ctx: BuildContext): Promise<BuildResult> {
     const applicationDir = ctx.applicationDir as PortablePath
-
-    const yarnLock = await xfs.readFilePromise(ppath.join(applicationDir, 'yarn.lock' as PortablePath))
-    const yarnLockCheckSum = createHash('md5').update(yarnLock).digest('hex')
-
     const yarnCachePath = ppath.join(applicationDir, '.yarn/cache' as PortablePath)
 
-    //if (xfs.existsSync(yarnCachePath)) {
+    if (xfs.existsSync(yarnCachePath)) {
+      const yarnLock = await xfs.readFilePromise(
+        ppath.join(applicationDir, 'yarn.lock' as PortablePath)
+      )
+      const yarnLockCheckSum = createHash('md5').update(yarnLock).digest('hex')
+
       const cacheLayer = await ctx.layers.get('yarn-cache', true, true, true)
 
       if (yarnLockCheckSum !== cacheLayer.getMetadata('locksum')) {
@@ -48,20 +49,18 @@ export class YarnCacheBuilder implements Builder {
           cacheFolder: ppath.relative(applicationDir, cacheLayer.path as PortablePath),
         })
       )
-    //}
 
-    await execUtils.pipevp('yarn', ['install', '--immutable'], {
-      cwd: applicationDir,
-      stdin: process.stdin,
-      stdout: process.stdout,
-      stderr: process.stderr,
-      env: process.env,
-    })
+      await execUtils.pipevp('yarn', ['install', '--immutable'], {
+        cwd: applicationDir,
+        stdin: process.stdin,
+        stdout: process.stdout,
+        stderr: process.stderr,
+        env: process.env,
+      })
 
-    const result = new BuildResult(
-      [cacheLayer]
-    )
+      return new BuildResult([cacheLayer])
+    }
 
-    return result
+    return new BuildResult()
   }
 }

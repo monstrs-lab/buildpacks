@@ -5,27 +5,28 @@ import { join }          from 'node:path'
 import { Detector }      from '@monstrs/buildpack-core'
 import { DetectContext } from '@monstrs/buildpack-core'
 import { DetectResult }  from '@monstrs/buildpack-core'
+import { BuildPlan }  from '@monstrs/buildpack-core'
+import { BuildPlanProvide } from '@monstrs/buildpack-core'
 
 export class YarnCacheDetector implements Detector {
   async detect(ctx: DetectContext): Promise<DetectResult> {
+    const result = new DetectResult()
+
     try {
-      await access(join(ctx.workingDir, 'yarn.lock'))
-      await access(join(ctx.workingDir, '.yarn/cache'))
+      await access(join(ctx.applicationDir, 'yarn.lock'))
+      await access(join(ctx.applicationDir, '.yarn/cache'))
     } catch {
-      return null
+      return result
     }
 
-    return {
-      provides: [
-        {
-          name: 'yarn-cache',
-        },
-      ],
-      requires: [
-        {
-          name: 'yarn-cache',
-        },
-      ],
-    }
+    result.passed = true
+
+    result.plans.push(
+      new BuildPlan(
+        [new BuildPlanProvide('yarn-cache')]
+      )
+    )
+
+    return result
   }
 }

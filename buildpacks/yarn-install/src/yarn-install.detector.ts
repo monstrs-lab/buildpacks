@@ -1,10 +1,10 @@
-import { access }        from 'node:fs/promises'
-import { join }          from 'node:path'
+import { access }           from 'node:fs/promises'
+import { join }             from 'node:path'
 
-import { Detector }      from '@monstrs/buildpack-core'
-import { DetectContext } from '@monstrs/buildpack-core'
-import { DetectResult }  from '@monstrs/buildpack-core'
-import { BuildPlan }  from '@monstrs/buildpack-core'
+import { Detector }         from '@monstrs/buildpack-core'
+import { DetectContext }    from '@monstrs/buildpack-core'
+import { DetectResult }     from '@monstrs/buildpack-core'
+import { BuildPlan }        from '@monstrs/buildpack-core'
 import { BuildPlanProvide } from '@monstrs/buildpack-core'
 
 export class YarnInstallDetector implements Detector {
@@ -20,11 +20,7 @@ export class YarnInstallDetector implements Detector {
 
     result.passed = true
 
-    result.plans.push(
-      new BuildPlan(
-        [new BuildPlanProvide('yarn-install')]
-      )
-    )
+    result.plans.push(new BuildPlan([new BuildPlanProvide('yarn-install')]))
 
     return result
   }

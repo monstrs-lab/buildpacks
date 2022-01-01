@@ -29,10 +29,4 @@ export class Layers {
 
     return layer
   }
-
-  async save() {
-    for await (const layer of this.layers.values()) {
-      await layer.dump()
-    }
-  }
 }

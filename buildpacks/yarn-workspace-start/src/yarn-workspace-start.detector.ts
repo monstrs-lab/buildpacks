@@ -1,13 +1,13 @@
-import execa             from 'execa'
-import fs                from 'fs'
-import path              from 'path'
-import { readFileSync }  from 'fs'
-import { join }          from 'path'
+import execa                from 'execa'
+import fs                   from 'fs'
+import path                 from 'path'
+import { readFileSync }     from 'fs'
+import { join }             from 'path'
 
-import { Detector }      from '@monstrs/buildpack-core'
-import { DetectContext } from '@monstrs/buildpack-core'
-import { DetectResult }  from '@monstrs/buildpack-core'
-import { BuildPlan }  from '@monstrs/buildpack-core'
+import { Detector }         from '@monstrs/buildpack-core'
+import { DetectContext }    from '@monstrs/buildpack-core'
+import { DetectResult }     from '@monstrs/buildpack-core'
+import { BuildPlan }        from '@monstrs/buildpack-core'
 import { BuildPlanProvide } from '@monstrs/buildpack-core'
 import { BuildPlanRequire } from '@monstrs/buildpack-core'
 
@@ -39,11 +39,7 @@ export class YarnWorkspaceStartDetector implements Detector {
 
     result.passed = true
 
-    result.plans.push(
-      new BuildPlan(
-        [new BuildPlanProvide('yarn-workspace-start')]
-      )
-    )
+    result.plans.push(new BuildPlan([new BuildPlanProvide('yarn-workspace-start')]))
 
     return result
   }

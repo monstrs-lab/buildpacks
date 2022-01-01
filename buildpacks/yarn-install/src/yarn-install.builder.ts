@@ -9,5 +9,7 @@ export class YarnInstallBuilder implements Builder {
     await execa('yarn', ['install', '--immutable', '--immutable-cache', '--inline-builds'], {
       stdin: 'inherit',
     })
+
+    return new BuildResult()
   }
 }

@@ -1,16 +1,13 @@
 import path            from 'path'
 
 import { ExitHandler } from './cnb'
+import { Builder }     from './cnb/build'
 import { Detector }    from './cnb/detect'
-import { Builder }     from './cnb'
-import { Config }      from './cnb'
-import { build }       from './build'
+import { build }       from './cnb/build'
 import { detect }      from './cnb/detect'
 
 export const run = async (detector: Detector, builder?: Builder) => {
-  const config = new Config(process.argv.slice(1, process.argv.length))
-
-  const phase = path.basename(config.arguments[0])
+  const phase = path.basename(process.argv[1])
 
   if (!['detect', 'build'].includes(phase)) {
     ExitHandler.error(new Error(`Unsupported phase ${phase}`))
@@ -21,7 +18,7 @@ export const run = async (detector: Detector, builder?: Builder) => {
       await detect(detector)
     } else if (phase === 'build') {
       if (builder) {
-        await build(builder, config)
+        await build(builder)
       }
     }
   } catch (error) {

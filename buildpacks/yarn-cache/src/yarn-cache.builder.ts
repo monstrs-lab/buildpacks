@@ -15,7 +15,6 @@ export class YarnCacheBuilder implements Builder {
     const applicationDir = ctx.applicationDir as PortablePath
     const yarnCachePath = ppath.join(applicationDir, '.yarn/cache' as PortablePath)
 
-    if (xfs.existsSync(yarnCachePath)) {
       const yarnLock = await xfs.readFilePromise(
         ppath.join(applicationDir, 'yarn.lock' as PortablePath)
       )
@@ -59,8 +58,5 @@ export class YarnCacheBuilder implements Builder {
       })
 
       return new BuildResult([cacheLayer])
-    }
-
-    return new BuildResult()
   }
 }

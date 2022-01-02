@@ -9,14 +9,9 @@ import { BuildResult }  from '@monstrs/buildpack-core'
 
 export class YarnInstallBuilder implements Builder {
   async build(ctx: BuildContext): Promise<BuildResult> {
-    const applicationDir = ctx.applicationDir as PortablePath
-    const yarnCachePath = ppath.join(applicationDir, '.yarn/cache' as PortablePath)
-
-    if (xfs.existsSync(yarnCachePath)) {
     await execa('yarn', ['install', '--immutable', '--immutable-cache', '--inline-builds'], {
       stdin: 'inherit',
     })
-  }
 
     return new BuildResult()
   }

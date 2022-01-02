@@ -16,14 +16,10 @@ export class YarnCacheDetector implements Detector {
       await access(join(ctx.applicationDir, 'yarn.lock'))
       await access(join(ctx.applicationDir, '.yarn/cache'))
     } catch {
-      //return result
+      return result
     }
 
     result.passed = true
-
-    return result
-
-    result.plans.push(new BuildPlan([new BuildPlanProvide('yarn-cache')]))
 
     return result
   }

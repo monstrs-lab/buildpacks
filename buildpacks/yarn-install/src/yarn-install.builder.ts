@@ -1,13 +1,14 @@
-import execa            from 'execa'
+import execa           from 'execa'
 
-import { Builder }      from '@monstrs/buildpack-core'
-import { BuildContext } from '@monstrs/buildpack-core'
-import { BuildResult }  from '@monstrs/buildpack-core'
+import { Builder }     from '@monstrs/libcnb'
+import { BuildResult } from '@monstrs/libcnb'
 
 export class YarnInstallBuilder implements Builder {
-  async build(ctx: BuildContext): Promise<BuildResult> {
+  async build(): Promise<BuildResult> {
     await execa('yarn', ['install', '--immutable', '--immutable-cache', '--inline-builds'], {
       stdin: 'inherit',
     })
+
+    return new BuildResult()
   }
 }

@@ -1,4 +1,4 @@
-api = "0.2"
+api = "0.6"
 
 [buildpack]
 id = "tech.monstrs.buildpacks.yarn-workspace"
@@ -12,18 +12,12 @@ include_files = ["buildpack.toml"]
 
 [[order.group]]
 id = "tech.monstrs.buildpacks.yarn-install"
+optional = true
 version = "0.0.3"
 
 [[order.group]]
-id = "tech.monstrs.buildpacks.yarn-workspace-build"
-version = "0.0.3"
-
-[[order.group]]
-id = "tech.monstrs.buildpacks.yarn-workspace-pack"
-version = "0.0.3"
-
-[[order.group]]
-id = "tech.monstrs.buildpacks.yarn-workspace-node-options"
+id = "tech.monstrs.buildpacks.yarn-cache"
+optional = true
 version = "0.0.3"
 
 [[order.group]]

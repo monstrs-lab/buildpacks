@@ -1,4 +1,4 @@
-import { run }                        from '@monstrs/buildpack-core'
+import { run }                        from '@monstrs/libcnb'
 
 import { YarnWorkspaceStartBuilder }  from './yarn-workspace-start.builder'
 import { YarnWorkspaceStartDetector } from './yarn-workspace-start.detector'
@@ -6,4 +6,4 @@ import { YarnWorkspaceStartDetector } from './yarn-workspace-start.detector'
 run(new YarnWorkspaceStartDetector(), new YarnWorkspaceStartBuilder())
 
 // @ts-ignore
-const core = require('@monstrs/buildpack-core') // eslint-disable-line
+const core = require('@monstrs/libcnb') // eslint-disable-line

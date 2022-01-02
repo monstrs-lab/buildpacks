@@ -1,11 +1,9 @@
-import { access }           from 'node:fs/promises'
-import { join }             from 'node:path'
+import { access }        from 'node:fs/promises'
+import { join }          from 'node:path'
 
-import { Detector }         from '@monstrs/buildpack-core'
-import { DetectContext }    from '@monstrs/buildpack-core'
-import { DetectResult }     from '@monstrs/buildpack-core'
-import { BuildPlan }        from '@monstrs/buildpack-core'
-import { BuildPlanProvide } from '@monstrs/buildpack-core'
+import { Detector }      from '@monstrs/libcnb'
+import { DetectContext } from '@monstrs/libcnb'
+import { DetectResult }  from '@monstrs/libcnb'
 
 export class YarnInstallDetector implements Detector {
   async detect(ctx: DetectContext): Promise<DetectResult> {

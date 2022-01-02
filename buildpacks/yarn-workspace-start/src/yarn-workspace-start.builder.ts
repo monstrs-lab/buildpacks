@@ -1,16 +1,14 @@
+import { readFileSync } from 'node:fs'
 import { writeFile }    from 'node:fs/promises'
 import { chmod }        from 'node:fs/promises'
 import { join }         from 'node:path'
 
-import execa                from 'execa'
-import fs                   from 'fs'
-import path                 from 'path'
-import { readFileSync }     from 'fs'
+import execa            from 'execa'
 
-import { Builder }      from '@monstrs/buildpack-core'
-import { BuildContext } from '@monstrs/buildpack-core'
-import { BuildResult }  from '@monstrs/buildpack-core'
-import { Process }      from '@monstrs/buildpack-core'
+import { Builder }      from '@monstrs/libcnb'
+import { BuildContext } from '@monstrs/libcnb'
+import { BuildResult }  from '@monstrs/libcnb'
+import { Process }      from '@monstrs/libcnb'
 
 export class YarnWorkspaceStartBuilder implements Builder {
   async build(ctx: BuildContext): Promise<BuildResult> {
@@ -20,13 +18,9 @@ export class YarnWorkspaceStartBuilder implements Builder {
 
     const workspace = workspaces.find(({ name }) => name === process.env.WORKSPACE)
 
-    const entrypoint = `${workspace.location}/dist/index.js`
-
     const pkgjson = JSON.parse(readFileSync(join(workspace.location, 'package.json'), 'utf-8'))
 
-    const entry = ctx.plan.entries[0]
-
-    const location = workspace.location
+    const { location } = workspace
     const command = pkgjson.scripts.start
 
     const result = new BuildResult()
@@ -43,7 +37,7 @@ export class YarnWorkspaceStartBuilder implements Builder {
       ['--require', join(ctx.applicationDir, '.pnp.cjs')].join(' '),
       ' '
     )
-    console.log('build - sfsdfsfsd')
+
     return result
   }
 }

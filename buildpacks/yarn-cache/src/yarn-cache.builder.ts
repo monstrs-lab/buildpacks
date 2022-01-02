@@ -6,57 +6,57 @@ import { ppath }        from '@yarnpkg/fslib'
 import YAML             from 'yaml'
 import { createHash }   from 'crypto'
 
-import { Builder }      from '@monstrs/buildpack-core'
-import { BuildContext } from '@monstrs/buildpack-core'
-import { BuildResult }  from '@monstrs/buildpack-core'
+import { Builder }      from '@monstrs/libcnb'
+import { BuildContext } from '@monstrs/libcnb'
+import { BuildResult }  from '@monstrs/libcnb'
 
 export class YarnCacheBuilder implements Builder {
   async build(ctx: BuildContext): Promise<BuildResult> {
     const applicationDir = ctx.applicationDir as PortablePath
     const yarnCachePath = ppath.join(applicationDir, '.yarn/cache' as PortablePath)
 
-      const yarnLock = await xfs.readFilePromise(
-        ppath.join(applicationDir, 'yarn.lock' as PortablePath)
-      )
-      const yarnLockCheckSum = createHash('md5').update(yarnLock).digest('hex')
+    const yarnLock = await xfs.readFilePromise(
+      ppath.join(applicationDir, 'yarn.lock' as PortablePath)
+    )
+    const yarnLockCheckSum = createHash('md5').update(yarnLock).digest('hex')
 
-      const cacheLayer = await ctx.layers.get('yarn-cache', true, true, true)
+    const cacheLayer = await ctx.layers.get('yarn-cache', true, true, true)
 
-      if (yarnLockCheckSum !== cacheLayer.getMetadata('locksum')) {
-        for await (const file of await xfs.readdirPromise(yarnCachePath)) {
-          await xfs.copyPromise(
-            ppath.join(cacheLayer.path as PortablePath, file),
-            ppath.join(yarnCachePath, file)
-          )
-        }
-
-        cacheLayer.setMetadata('locksum', yarnLockCheckSum.toString())
+    if (yarnLockCheckSum !== cacheLayer.getMetadata('locksum')) {
+      for await (const file of await xfs.readdirPromise(yarnCachePath)) {
+        await xfs.copyPromise(
+          ppath.join(cacheLayer.path as PortablePath, file),
+          ppath.join(yarnCachePath, file)
+        )
       }
 
-      await xfs.rmdirPromise(yarnCachePath, { recursive: true })
+      cacheLayer.setMetadata('locksum', yarnLockCheckSum.toString())
+    }
 
-      const yarnrc = await xfs.readFilePromise(
-        ppath.join(applicationDir, '.yarnrc.yml' as PortablePath)
-      )
+    await xfs.rmdirPromise(yarnCachePath, { recursive: true })
 
-      const yarnrcContent = YAML.parse(yarnrc.toString())
+    const yarnrc = await xfs.readFilePromise(
+      ppath.join(applicationDir, '.yarnrc.yml' as PortablePath)
+    )
 
-      await xfs.writeFilePromise(
-        ppath.join(applicationDir, '.yarnrc.yml' as PortablePath),
-        YAML.stringify({
-          ...yarnrcContent,
-          cacheFolder: ppath.relative(applicationDir, cacheLayer.path as PortablePath),
-        })
-      )
+    const yarnrcContent = YAML.parse(yarnrc.toString())
 
-      await execUtils.pipevp('yarn', ['install', '--immutable'], {
-        cwd: applicationDir,
-        stdin: process.stdin,
-        stdout: process.stdout,
-        stderr: process.stderr,
-        env: process.env,
+    await xfs.writeFilePromise(
+      ppath.join(applicationDir, '.yarnrc.yml' as PortablePath),
+      YAML.stringify({
+        ...yarnrcContent,
+        cacheFolder: ppath.relative(applicationDir, cacheLayer.path as PortablePath),
       })
+    )
 
-      return new BuildResult([cacheLayer])
+    await execUtils.pipevp('yarn', ['install', '--immutable'], {
+      cwd: applicationDir,
+      stdin: process.stdin,
+      stdout: process.stdout,
+      stderr: process.stderr,
+      env: process.env,
+    })
+
+    return new BuildResult([cacheLayer])
   }
 }

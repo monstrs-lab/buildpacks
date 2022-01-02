@@ -5,7 +5,7 @@
   "license": "MIT",
   "workspaces": [
     "buildpacks/*",
-    "packages/*"
+    "libcnb/*"
   ],
   "devDependencies": {
     "@jest/core": "^27.4.5",

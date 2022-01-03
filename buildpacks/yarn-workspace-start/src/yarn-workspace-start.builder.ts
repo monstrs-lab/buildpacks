@@ -13,10 +13,11 @@ export class YarnWorkspaceStartBuilder implements Builder {
     const pkgjson = JSON.parse(readFileSync(join(ctx.applicationDir, 'package.json'), 'utf-8'))
 
     const command = pkgjson.scripts.start
+    const nodeOptions = ['--require', join(ctx.applicationDir, '.pnp.cjs')].join(' ')
 
     const result = new BuildResult()
 
-    await writeFile('/workspace/run.sh', `#!/usr/bin/env bash\n${command}`)
+    await writeFile('/workspace/run.sh', `#!/usr/bin/env bash\nexport NODE_OPTIONS="${nodeOptions}"\n${command}`)
     await chmod('/workspace/run.sh', '755')
 
     result.launchMetadata.processes.push(new Process('web', './run.sh', [], true, true))
@@ -25,7 +26,7 @@ export class YarnWorkspaceStartBuilder implements Builder {
 
     nodeOptionsLayer.launchEnv.append(
       'NODE_OPTIONS',
-      ['--require', join(ctx.applicationDir, '.pnp.cjs')].join(' '),
+      nodeOptions,
       ' '
     )
 

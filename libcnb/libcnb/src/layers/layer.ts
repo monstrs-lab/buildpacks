@@ -48,15 +48,17 @@ export class Layer {
   async load() {
     if (existsSync(this.metadataFile)) {
       const metadataFile = parse(await readFile(this.metadataFile, 'utf-8')) as {
-        build: boolean
-        cache: boolean
-        launch: boolean
+        types: {
+          build: boolean
+          cache: boolean
+          launch: boolean
+        }
         metadata?: { [key: string]: any }
       }
 
-      this.build = metadataFile.build
-      this.cache = metadataFile.cache
-      this.launch = metadataFile.launch
+      this.build = metadataFile.types.build
+      this.cache = metadataFile.types.cache
+      this.launch = metadataFile.types.launch
       this.metadata = metadataFile.metadata || {}
     }
 
@@ -72,9 +74,11 @@ export class Layer {
       this.metadataFile,
       stringify({
         metadata: this.metadata,
-        build: this.build,
-        cache: this.cache,
-        launch: this.launch,
+        types: {
+          build: this.build,
+          cache: this.cache,
+          launch: this.launch,
+        },
       })
     )
 

@@ -6,10 +6,6 @@ export class YarnWorkspaceStartDetector implements Detector {
   async detect(ctx: DetectContext): Promise<DetectResult> {
     const result = new DetectResult()
 
-    if (!process.env.WORKSPACE) {
-      return result
-    }
-
     result.passed = true
 
     return result

@@ -49,7 +49,7 @@ export class Environment {
     }
 
     for await (const [key, value] of this.data.entries()) {
-      await writeFile(key, value)
+      await writeFile(join(path, key), value)
     }
   }
 }

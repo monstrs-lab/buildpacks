@@ -5,7 +5,7 @@ import { BuildResult } from '@monstrs/libcnb'
 
 export class YarnInstallBuilder implements Builder {
   async build(): Promise<BuildResult> {
-    await execa('yarn', ['install', '--immutable', '--immutable-cache', '--inline-builds'], {
+    await execa('yarn', ['install', '--immutable', '--inline-builds'], {
       stdin: 'inherit',
     })
 

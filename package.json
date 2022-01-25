@@ -8,20 +8,23 @@
     "libcnb/*"
   ],
   "devDependencies": {
-    "@jest/core": "^27.4.5",
+    "@jest/core": "^27.4.7",
     "@monstrs/code-service": "^0.0.110",
     "@monstrs/config-jest": "^0.0.10",
-    "@monstrs/schematics": "^0.0.13",
-    "@types/eslint": "^8",
-    "@types/jest": "^27.0.3",
-    "@types/node": "^17.0.0",
-    "eslint": "^8.5.0",
-    "typescript": "^4.5.4"
+    "@monstrs/schematics": "^0.0.19",
+    "@types/eslint": "^8.4.1",
+    "@types/jest": "^27.4.0",
+    "@types/node": "^17.0.12",
+    "eslint": "^8.7.0",
+    "typescript": "^4.5.5"
   },
-  "schematic": {
-    "collection": "@monstrs/schematics",
-    "schematic": "project",
-    "type": "libraries",
-    "migration": 0
-  }
+  "tools": {
+    "schematic": {
+      "collection": "@monstrs/schematics",
+      "schematic": "project",
+      "type": "libraries",
+      "migration": "1643130948769"
+    }
+  },
+  "packageManager": "yarn@3.1.1"
 }

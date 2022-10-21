@@ -26,6 +26,10 @@ docker build --build-arg "base_image=${BASE_IMAGE}" --build-arg "stack_id=${STAC
 echo "BUILDING ${RUN_IMAGE}..."
 docker build --build-arg "base_image=${BASE_IMAGE}" --build-arg "stack_id=${STACK_ID}" -t "${RUN_IMAGE}" "${IMAGE_DIR}/run"
 
+for IMAGE in "${BASE_IMAGE}" "${BUILD_IMAGE}" "${RUN_IMAGE}"; do
+  docker push "${IMAGE}"
+done
+
 echo
 echo "STACK BUILT!"
 echo

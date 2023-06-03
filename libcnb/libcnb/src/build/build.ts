@@ -1,3 +1,5 @@
+import type { Builder }  from './builder'
+
 import { join }          from 'node:path'
 
 import { Buildpack }     from '../buildpack'
@@ -6,7 +8,6 @@ import { Store }         from '../output'
 import { BuildpackPlan } from '../plan'
 import { Platform }      from '../platform'
 import { BuildContext }  from './build.context'
-import { Builder }       from './builder'
 
 export const build = async (builder: Builder) => {
   if (!process.env.CNB_STACK_ID) {

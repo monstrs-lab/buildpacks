@@ -1,9 +1,10 @@
-import { access }        from 'node:fs/promises'
-import { join }          from 'node:path'
+import type { Detector }      from '@monstrs/libcnb'
+import type { DetectContext } from '@monstrs/libcnb'
 
-import { Detector }      from '@monstrs/libcnb'
-import { DetectContext } from '@monstrs/libcnb'
-import { DetectResult }  from '@monstrs/libcnb'
+import { access }             from 'node:fs/promises'
+import { join }               from 'node:path'
+
+import { DetectResult }       from '@monstrs/libcnb'
 
 export class YarnInstallDetector implements Detector {
   async detect(ctx: DetectContext): Promise<DetectResult> {

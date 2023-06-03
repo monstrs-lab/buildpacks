@@ -1,6 +1,7 @@
+import type { Layer }     from '../layers'
+
 import { join }           from 'node:path'
 
-import { Layer }          from '../layers'
 import { Store }          from '../output'
 import { LaunchMetadata } from '../output'
 import { BuildMetadata }  from '../output'

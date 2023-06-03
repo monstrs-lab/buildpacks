@@ -19,7 +19,7 @@ export class Layer {
 
   launch: boolean = false
 
-  metadata: { [key: string]: any } = {}
+  metadata: Record<string, any> = {}
 
   sharedEnv: Environment
 
@@ -53,7 +53,7 @@ export class Layer {
           cache: boolean
           launch: boolean
         }
-        metadata?: { [key: string]: any }
+        metadata?: Record<string, any>
       }
 
       this.build = metadataFile.types.build

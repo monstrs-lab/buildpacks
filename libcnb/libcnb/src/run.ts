@@ -1,10 +1,11 @@
-import path            from 'path'
+import type { Builder }  from './build'
+import type { Detector } from './detect'
 
-import { Builder }     from './build'
-import { Detector }    from './detect'
-import { ExitHandler } from './exit.handler'
-import { build }       from './build'
-import { detect }      from './detect'
+import path              from 'path'
+
+import { ExitHandler }   from './exit.handler'
+import { build }         from './build'
+import { detect }        from './detect'
 
 export const run = async (detector: Detector, builder?: Builder) => {
   const phase = path.basename(process.argv[1])

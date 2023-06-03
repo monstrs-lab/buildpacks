@@ -1,3 +1,5 @@
+import type { Detector } from './detector'
+
 import { writeFile }     from 'node:fs/promises'
 
 import { stringify }     from '@iarna/toml'
@@ -6,7 +8,6 @@ import { Buildpack }     from '../buildpack'
 import { ExitHandler }   from '../exit.handler'
 import { Platform }      from '../platform'
 import { DetectContext } from './detect.context'
-import { Detector }      from './detector'
 
 export const detect = async (detector: Detector) => {
   if (!process.env.CNB_STACK_ID) {

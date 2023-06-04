@@ -6,7 +6,7 @@ import { stringify } from '@iarna/toml'
 import { parse }     from '@iarna/toml'
 
 export class Store {
-  constructor(public readonly metadata: { [key: string]: any } = {}) {}
+  constructor(public readonly metadata: Record<string, any> = {}) {}
 
   static async fromPath(path) {
     try {

@@ -15,7 +15,7 @@ export class Buildpack {
     public readonly info: BuildpackInfo,
     public readonly path: string,
     public readonly stacks: Array<BuildpackStack> = [],
-    public readonly metadata: { [key: string]: any } = {},
+    public readonly metadata: Record<string, any> = {},
     public readonly order: Array<BuildpackOrder> = []
   ) {}
 

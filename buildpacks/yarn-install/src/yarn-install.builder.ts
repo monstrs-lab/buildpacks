@@ -1,7 +1,8 @@
-import execa           from 'execa'
+import type { Builder } from '@monstrs/libcnb'
 
-import { Builder }     from '@monstrs/libcnb'
-import { BuildResult } from '@monstrs/libcnb'
+import { execa }        from 'execa'
+
+import { BuildResult }  from '@monstrs/libcnb'
 
 export class YarnInstallBuilder implements Builder {
   async build(): Promise<BuildResult> {

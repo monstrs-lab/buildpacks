@@ -3,6 +3,11 @@
   "version": "0.0.1",
   "private": true,
   "license": "MIT",
+  "type": "module",
+  "exports": {
+    "./package.json": "./package.json",
+    ".": "./src/index.ts"
+  },
   "main": "src/index.ts",
   "files": [
     "dist"
@@ -12,10 +17,8 @@
     "build": "yarn service build",
     "clean": "rm -r -f dist"
   },
-  "dependencies": {
+  "devDependencies": {
     "@monstrs/libcnb": "workspace:0.0.1",
-    "@yarnpkg/core": "^3.2.0-rc.8",
-    "@yarnpkg/fslib": "^2.6.1-rc.3",
-    "execa": "^5.1.1"
+    "execa": "^7.1.1"
   }
 }

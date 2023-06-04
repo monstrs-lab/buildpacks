@@ -6,16 +6,20 @@ export class ExitHandler {
   static PassStatusCode = 0
 
   static pass() {
+    // eslint-disable-next-line n/no-process-exit
     process.exit(ExitHandler.PassStatusCode)
   }
 
   static fail() {
+    // eslint-disable-next-line n/no-process-exit
     process.exit(ExitHandler.FailStatusCode)
   }
 
   static error(error) {
-    console.error(error) // eslint-disable-line
+    // eslint-disable-next-line no-console
+    console.error(error)
 
+    // eslint-disable-next-line n/no-process-exit
     process.exit(ExitHandler.ErrorStatusCode)
   }
 }

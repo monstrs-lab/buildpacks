@@ -7,7 +7,7 @@ import { ExitHandler }   from './exit.handler'
 import { build }         from './build'
 import { detect }        from './detect'
 
-export const run = async (detector: Detector, builder?: Builder) => {
+export const run = async (detector: Detector, builder?: Builder): Promise<void> => {
   const phase = path.basename(process.argv[1])
 
   if (!['detect', 'build'].includes(phase)) {

@@ -7,7 +7,7 @@ import { BuildpackPlanEntry } from './buildpack.plan-entry'
 export class BuildpackPlan {
   constructor(public readonly entries: Array<BuildpackPlanEntry> = []) {}
 
-  static async fromPath(path: string) {
+  static async fromPath(path: string): Promise<BuildpackPlan> {
     const data: any = parse(await readFile(path, 'utf-8'))
 
     return new BuildpackPlan(

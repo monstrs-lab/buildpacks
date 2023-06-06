@@ -29,11 +29,11 @@ export class Layer {
 
   constructor(readonly path: string) {}
 
-  get name() {
+  get name(): string {
     return dirname(this.path)
   }
 
-  get metadataFile() {
+  get metadataFile(): string {
     return `${this.path}.toml`
   }
 
@@ -41,11 +41,11 @@ export class Layer {
     this.metadata[key] = value
   }
 
-  getMetadata(key: string) {
+  getMetadata(key: string): any {
     return this.metadata[key]
   }
 
-  async load() {
+  async load(): Promise<void> {
     if (existsSync(this.metadataFile)) {
       const metadataFile = parse(await readFile(this.metadataFile, 'utf-8')) as {
         types: {
@@ -67,7 +67,7 @@ export class Layer {
     this.launchEnv = await Environment.fromPath(join(this.path, 'env.launch'))
   }
 
-  async dump() {
+  async dump(): Promise<void> {
     await mkdir(this.path, { recursive: true })
 
     await writeFile(
@@ -87,7 +87,7 @@ export class Layer {
     this.launchEnv.toPath(join(this.path, 'env.launch'))
   }
 
-  async reset() {
+  async reset(): Promise<void> {
     if (existsSync(this.metadataFile)) {
       await unlink(this.metadataFile)
     }

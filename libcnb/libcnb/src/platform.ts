@@ -5,7 +5,7 @@ import { join }     from 'path'
 export class Platform {
   constructor(public readonly path: string, public readonly env: Map<string, string> = new Map()) {}
 
-  static async fromPath(path: string) {
+  static async fromPath(path: string): Promise<Platform> {
     const env: Map<string, string> = new Map()
 
     for await (const dirent of await readdir(join(path, 'env'), { withFileTypes: true })) {

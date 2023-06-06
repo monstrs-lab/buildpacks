@@ -17,28 +17,50 @@ export class LaunchMetadata {
     public readonly bom: Array<BOMEntry> = []
   ) {}
 
-  static async fromPath(path) {
-    const data: any = parse(await readFile(path, 'utf-8'))
+  static async fromPath(path): Promise<LaunchMetadata> {
+    const {
+      labels = [],
+      processes = [],
+      slices = [],
+      bom = [],
+    } = parse(await readFile(path, 'utf-8')) as {
+      labels?: Array<Label>
+      processes?: Array<Process>
+      slices?: Array<Slice>
+      bom?: Array<BOMEntry>
+    }
 
     return new LaunchMetadata(
-      (data.labels || []).map((label) => new Label(label.key, label.value)),
-      (data.processes || []).map(
+      labels.map((label) => new Label(label.key, label.value)),
+      processes.map(
         (processe) => new Process(processe.type, processe.command, processe.args, processe.direct)
       ),
-      (data.slices || []).map((slice) => new Slice(slice.path)),
-      (data.bom || []).map((bom) => new BOMEntry(bom.name, bom.metadata))
+      slices.map((slice) => new Slice(slice.paths)),
+      bom.map((bomEntry) => new BOMEntry(bomEntry.name, bomEntry.metadata))
     )
   }
 
-  async toPath(path) {
+  async toPath(path): Promise<void> {
     await writeFile(
       path,
       stringify({
-        labels: this.labels,
-        processes: this.processes,
-        slices: this.slices,
-        bom: this.bom,
-      } as any)
+        labels: this.labels.map((label) => ({
+          key: label.key,
+          value: label.value,
+        })),
+        processes: this.processes.map((process) => ({
+          type: process.type,
+          command: process.command,
+          args: process.args,
+          direct: process.direct,
+          default: process.default,
+        })),
+        slices: this.slices.map((slice) => ({ paths: slice.paths })),
+        bom: this.bom.map((bom) => ({
+          name: bom.name,
+          metadata: bom.metadata,
+        })),
+      })
     )
   }
 }

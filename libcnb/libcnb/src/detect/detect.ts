@@ -9,7 +9,7 @@ import { ExitHandler }   from '../exit.handler'
 import { Platform }      from '../platform'
 import { DetectContext } from './detect.context'
 
-export const detect = async (detector: Detector) => {
+export const detect = async (detector: Detector): Promise<void> => {
   if (!process.env.CNB_STACK_ID) {
     throw new Error('CNB_STACK_ID is not set')
   }

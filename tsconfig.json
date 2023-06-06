@@ -1,6 +1,16 @@
 {
   "compilerOptions": {
-    "lib": ["dom", "dom.iterable", "esnext", "dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "declaration": false,
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
@@ -26,5 +36,9 @@
     "jsx": "react",
     "outDir": "./dist"
   },
-  "include": ["project.types.d.ts", "buildpacks/**/*", "libcnb/**/*"]
+  "include": [
+    "project.types.d.ts",
+    "buildpacks/**/*",
+    "libcnb/**/*"
+  ]
 }

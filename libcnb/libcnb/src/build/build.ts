@@ -9,7 +9,7 @@ import { BuildpackPlan } from '../plan'
 import { Platform }      from '../platform'
 import { BuildContext }  from './build.context'
 
-export const build = async (builder: Builder) => {
+export const build = async (builder: Builder): Promise<void> => {
   if (!process.env.CNB_STACK_ID) {
     throw new Error('CNB_STACK_ID is not set')
   }

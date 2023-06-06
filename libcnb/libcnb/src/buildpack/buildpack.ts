@@ -19,7 +19,7 @@ export class Buildpack {
     public readonly order: Array<BuildpackOrder> = []
   ) {}
 
-  static async fromPath(path: string) {
+  static async fromPath(path: string): Promise<Buildpack> {
     const data: any = parse(await readFile(join(path, 'buildpack.toml'), 'utf-8'))
 
     return new Buildpack(

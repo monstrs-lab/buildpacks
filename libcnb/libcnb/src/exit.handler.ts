@@ -5,17 +5,17 @@ export class ExitHandler {
 
   static PassStatusCode = 0
 
-  static pass() {
+  static pass(): void {
     // eslint-disable-next-line n/no-process-exit
     process.exit(ExitHandler.PassStatusCode)
   }
 
-  static fail() {
+  static fail(): void {
     // eslint-disable-next-line n/no-process-exit
     process.exit(ExitHandler.FailStatusCode)
   }
 
-  static error(error) {
+  static error(error): void {
     // eslint-disable-next-line no-console
     console.error(error)
 

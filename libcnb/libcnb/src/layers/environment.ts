@@ -8,7 +8,7 @@ import { join }       from 'node:path'
 export class Environment {
   constructor(private readonly data: Map<string, string> = new Map<string, string>()) {}
 
-  static async fromPath(path: string) {
+  static async fromPath(path: string): Promise<Environment> {
     const suffixes = ['.append', '.prepend', '.default', '.delim', '.override']
     const data = new Map<string, string>()
 
@@ -25,25 +25,25 @@ export class Environment {
     return new Environment(data)
   }
 
-  append(name: string, value: string, delim: string = ':') {
+  append(name: string, value: string, delim: string = ':'): void {
     this.data.set(`${name}.append`, value)
     this.data.set(`${name}.delim`, delim)
   }
 
-  prepend(name: string, value: string, delim: string = ':') {
+  prepend(name: string, value: string, delim: string = ':'): void {
     this.data.set(`${name}.prepend`, value)
     this.data.set(`${name}.delim`, delim)
   }
 
-  default(name: string, value: string) {
+  default(name: string, value: string): void {
     this.data.set(`${name}.default`, value)
   }
 
-  override(name: string, value: string) {
+  override(name: string, value: string): void {
     this.data.set(`${name}.override`, value)
   }
 
-  async toPath(path: string) {
+  async toPath(path: string): Promise<void> {
     if (!existsSync(path)) {
       await mkdir(path)
     }

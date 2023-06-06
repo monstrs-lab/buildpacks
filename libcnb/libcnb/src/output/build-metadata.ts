@@ -13,22 +13,28 @@ export class BuildMetadata {
     public readonly unmet: Array<UnmetPlanEntry> = []
   ) {}
 
-  static async fromPath(path) {
-    const data: any = parse(await readFile(path, 'utf-8'))
+  static async fromPath(path): Promise<BuildMetadata> {
+    const { bom = [], unmet = [] } = parse(await readFile(path, 'utf-8')) as {
+      bom?: Array<BOMEntry>
+      unmet?: Array<UnmetPlanEntry>
+    }
 
     return new BuildMetadata(
-      (data.bom || []).map((bom) => new BOMEntry(bom.name, bom.metadata)),
-      (data.unmet || []).map((unmet) => new UnmetPlanEntry(unmet.name))
+      bom.map((bomEntry) => new BOMEntry(bomEntry.name, bomEntry.metadata)),
+      unmet.map((unmetEntry) => new UnmetPlanEntry(unmetEntry.name))
     )
   }
 
-  async toPath(path) {
+  async toPath(path): Promise<void> {
     await writeFile(
       path,
       stringify({
-        unmet: this.unmet,
-        bom: this.bom,
-      } as any)
+        unmet: this.unmet.map((unmet) => ({ name: unmet.name })),
+        bom: this.bom.map((bom) => ({
+          name: bom.name,
+          metadata: bom.metadata,
+        })),
+      })
     )
   }
 }

@@ -8,7 +8,7 @@ import { parse }     from '@iarna/toml'
 export class Store {
   constructor(public readonly metadata: Record<string, any> = {}) {}
 
-  static async fromPath(path): Promise<Store> {
+  static async fromPath(path: string): Promise<Store> {
     try {
       await access(path)
 
@@ -20,7 +20,7 @@ export class Store {
     }
   }
 
-  async toPath(path): Promise<void> {
+  async toPath(path: string): Promise<void> {
     if (Object.keys(this.metadata).length > 0) {
       await writeFile(
         path,

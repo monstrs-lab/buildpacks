@@ -39,9 +39,5 @@
     "jsx": "react",
     "outDir": "./dist"
   },
-  "include": [
-    "project.types.d.ts",
-    "buildpacks/**/*",
-    "libcnb/**/*"
-  ]
+  "include": ["project.types.d.ts", "buildpacks/**/*", "libcnb/**/*"]
 }

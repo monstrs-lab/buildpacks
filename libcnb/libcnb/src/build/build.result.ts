@@ -14,7 +14,7 @@ export class BuildResult {
     public readonly buildMetadata: BuildMetadata = new BuildMetadata()
   ) {}
 
-  async toPath(path): Promise<void> {
+  async toPath(path: string): Promise<void> {
     for await (const layer of this.layers) {
       await layer.dump()
     }

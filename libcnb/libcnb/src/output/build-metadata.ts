@@ -13,7 +13,7 @@ export class BuildMetadata {
     public readonly unmet: Array<UnmetPlanEntry> = []
   ) {}
 
-  static async fromPath(path): Promise<BuildMetadata> {
+  static async fromPath(path: string): Promise<BuildMetadata> {
     const { bom = [], unmet = [] } = parse(await readFile(path, 'utf-8')) as {
       bom?: Array<BOMEntry>
       unmet?: Array<UnmetPlanEntry>
@@ -25,7 +25,7 @@ export class BuildMetadata {
     )
   }
 
-  async toPath(path): Promise<void> {
+  async toPath(path: string): Promise<void> {
     await writeFile(
       path,
       stringify({

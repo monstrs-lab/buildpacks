@@ -15,7 +15,7 @@ export class ExitHandler {
     process.exit(ExitHandler.FailStatusCode)
   }
 
-  static error(error): void {
+  static error(error: unknown): void {
     // eslint-disable-next-line no-console
     console.error(error)
 

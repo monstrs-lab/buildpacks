@@ -17,7 +17,7 @@ export class LaunchMetadata {
     public readonly bom: Array<BOMEntry> = []
   ) {}
 
-  static async fromPath(path): Promise<LaunchMetadata> {
+  static async fromPath(path: string): Promise<LaunchMetadata> {
     const {
       labels = [],
       processes = [],
@@ -40,7 +40,7 @@ export class LaunchMetadata {
     )
   }
 
-  async toPath(path): Promise<void> {
+  async toPath(path: string): Promise<void> {
     await writeFile(
       path,
       stringify({

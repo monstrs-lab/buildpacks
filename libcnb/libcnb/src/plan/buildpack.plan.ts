@@ -1,3 +1,5 @@
+import type { JsonMap }       from '@iarna/toml'
+
 import { readFile }           from 'node:fs/promises'
 
 import { parse }              from '@iarna/toml'
@@ -8,10 +10,14 @@ export class BuildpackPlan {
   constructor(public readonly entries: Array<BuildpackPlanEntry> = []) {}
 
   static async fromPath(path: string): Promise<BuildpackPlan> {
-    const data: any = parse(await readFile(path, 'utf-8'))
+    const { entries = [] }: JsonMap = parse(await readFile(path, 'utf-8'))
 
-    return new BuildpackPlan(
-      (data.entries || []).map((entry) => new BuildpackPlanEntry(entry.name, entry.metadata))
-    )
+    if (Array.isArray(entries)) {
+      return new BuildpackPlan(
+        entries.map((entry) => new BuildpackPlanEntry(entry.name, entry.metadata))
+      )
+    }
+
+    return new BuildpackPlan([])
   }
 }

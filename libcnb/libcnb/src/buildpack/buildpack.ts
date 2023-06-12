@@ -1,3 +1,6 @@
+import type { JsonMap }        from '@iarna/toml'
+import type { JsonArray }      from '@iarna/toml'
+
 import { readFile }            from 'node:fs/promises'
 import { join }                from 'node:path'
 
@@ -19,31 +22,46 @@ export class Buildpack {
     public readonly order: Array<BuildpackOrder> = []
   ) {}
 
+  static buildInfo(buildpack: JsonMap = {}): BuildpackInfo {
+    return new BuildpackInfo(
+      buildpack.id as string,
+      buildpack.version as string,
+      buildpack.name as string,
+      buildpack.homepage as string,
+      buildpack['clear-env'] as boolean,
+      buildpack.description as string,
+      buildpack.keywords as Array<string>,
+      ((buildpack.licenses as JsonArray) || []).map(
+        (license) => new BuildpackLicense(license.type, license.uri)
+      )
+    )
+  }
+
   static async fromPath(path: string): Promise<Buildpack> {
-    const data: any = parse(await readFile(join(path, 'buildpack.toml'), 'utf-8'))
+    const {
+      api,
+      buildpack,
+      stacks = [],
+      metadata,
+      order = [],
+    }: JsonMap = parse(await readFile(join(path, 'buildpack.toml'), 'utf-8'))
 
     return new Buildpack(
-      data.api,
-      new BuildpackInfo(
-        data.buildpack.id,
-        data.buildpack.version,
-        data.buildpack.name,
-        data.buildpack.homepage,
-        data.buildpack['clear-env'],
-        data.buildpack.description,
-        data.buildpack.keywords,
-        (data.buildpack.licenses || []).map(
-          (license) => new BuildpackLicense(license.type, license.uri)
-        )
-      ),
+      api as string,
+      this.buildInfo(buildpack as JsonMap),
       path,
-      (data.stacks || []).map((stack) => new BuildpackStack(stack.id, stack.mixins)),
-      data.metadata,
-      (data.order || []).map(
-        (order) =>
+      (stacks as JsonArray).map((stack) => new BuildpackStack(stack.id, stack.mixins)),
+      metadata as JsonMap,
+      (order as JsonArray).map(
+        ({ group: groups = [] }) =>
           new BuildpackOrder(
-            (order.group || []).map(
-              (group) => new BuildpackGroupEntry(group.id, group.version, group.optional)
+            (groups as Array<JsonMap>).map(
+              (group: JsonMap) =>
+                new BuildpackGroupEntry(
+                  group.id as string,
+                  group.version as string,
+                  group.optional as boolean
+                )
             )
           )
       )

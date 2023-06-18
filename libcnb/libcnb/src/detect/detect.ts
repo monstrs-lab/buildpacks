@@ -38,9 +38,12 @@ export const detect = async (detector: Detector): Promise<void> => {
     writeFile(
       process.argv[3],
       stringify({
-        provides: result.plans[0].provides,
-        requires: result.plans[0].requires,
-      } as any)
+        provides: result.plans[0].provides.map((provide) => ({ name: provide.name })),
+        requires: result.plans[0].requires.map((req) => ({
+          name: req.name,
+          metadata: req.metadata,
+        })),
+      })
     )
   }
 }

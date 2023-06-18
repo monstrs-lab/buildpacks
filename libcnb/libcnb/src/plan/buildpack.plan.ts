@@ -14,7 +14,10 @@ export class BuildpackPlan {
 
     if (Array.isArray(entries)) {
       return new BuildpackPlan(
-        entries.map((entry) => new BuildpackPlanEntry(entry.name, entry.metadata))
+        entries.map(
+          (entry) =>
+            new BuildpackPlanEntry(entry.name as string, entry.metadata as Record<string, string>)
+        )
       )
     }
 

@@ -32,7 +32,7 @@ export class Buildpack {
       buildpack.description as string,
       buildpack.keywords as Array<string>,
       ((buildpack.licenses as JsonArray) || []).map(
-        (license) => new BuildpackLicense(license.type, license.uri)
+        (license) => new BuildpackLicense(license.type as string, license.uri as string)
       )
     )
   }
@@ -50,7 +50,9 @@ export class Buildpack {
       api as string,
       this.buildInfo(buildpack as JsonMap),
       path,
-      (stacks as JsonArray).map((stack) => new BuildpackStack(stack.id, stack.mixins)),
+      (stacks as JsonArray).map(
+        (stack) => new BuildpackStack(stack.id as string, stack.mixins as Array<string>)
+      ),
       metadata as JsonMap,
       (order as JsonArray).map(
         ({ group: groups = [] }) =>

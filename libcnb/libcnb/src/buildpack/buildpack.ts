@@ -1,5 +1,4 @@
 import type { JsonMap }        from '@iarna/toml'
-import type { JsonArray }      from '@iarna/toml'
 
 import { readFile }            from 'node:fs/promises'
 import { join }                from 'node:path'
@@ -31,7 +30,7 @@ export class Buildpack {
       buildpack['clear-env'] as boolean,
       buildpack.description as string,
       buildpack.keywords as Array<string>,
-      ((buildpack.licenses as JsonArray) || []).map(
+      ((buildpack.licenses as Array<JsonMap>) || []).map(
         (license) => new BuildpackLicense(license.type as string, license.uri as string)
       )
     )
@@ -50,11 +49,11 @@ export class Buildpack {
       api as string,
       this.buildInfo(buildpack as JsonMap),
       path,
-      (stacks as JsonArray).map(
+      (stacks as Array<JsonMap>).map(
         (stack) => new BuildpackStack(stack.id as string, stack.mixins as Array<string>)
       ),
       metadata as JsonMap,
-      (order as JsonArray).map(
+      (order as Array<JsonMap>).map(
         ({ group: groups = [] }) =>
           new BuildpackOrder(
             (groups as Array<JsonMap>).map(

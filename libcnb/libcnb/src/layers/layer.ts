@@ -21,11 +21,11 @@ export class Layer {
 
   metadata: Record<string, any> = {}
 
-  sharedEnv: Environment
+  sharedEnv!: Environment
 
-  buildEnv: Environment
+  buildEnv!: Environment
 
-  launchEnv: Environment
+  launchEnv!: Environment
 
   constructor(readonly path: string) {}
 

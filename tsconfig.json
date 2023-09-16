@@ -49,9 +49,5 @@
     "outDir": "./dist",
     "noImplicitOverride": true
   },
-  "include": [
-    "project.types.d.ts",
-    "buildpacks/**/*",
-    "libcnb/**/*"
-  ]
+  "include": ["project.types.d.ts", "buildpacks/**/*", "libcnb/**/*"]
 }

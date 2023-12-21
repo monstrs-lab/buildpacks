@@ -1,3 +1,5 @@
+/* eslint-disable n/no-sync */
+
 import { existsSync }  from 'node:fs'
 import { readFile }    from 'node:fs/promises'
 import { rmdir }       from 'node:fs/promises'

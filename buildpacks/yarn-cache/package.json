@@ -18,8 +18,6 @@
     "clean": "rm -r -f dist"
   },
   "devDependencies": {
-    "@monstrs/libcnb": "workspace:0.0.1",
-    "execa": "^7.1.1",
-    "yaml": "^1.10.2"
+    "@monstrs/libcnb": "workspace:0.0.1"
   }
 }

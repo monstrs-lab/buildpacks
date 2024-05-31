@@ -891,17 +891,6 @@ __metadata:
   resolution: "@monstrs/buildpack-yarn-cache@workspace:buildpacks/yarn-cache"
   dependencies:
     "@monstrs/libcnb": "workspace:0.0.1"
-    execa: "npm:^7.1.1"
-    yaml: "npm:^1.10.2"
-  languageName: unknown
-  linkType: soft
-
-"@monstrs/buildpack-yarn-install@workspace:buildpacks/yarn-install":
-  version: 0.0.0-use.local
-  resolution: "@monstrs/buildpack-yarn-install@workspace:buildpacks/yarn-install"
-  dependencies:
-    "@monstrs/libcnb": "workspace:0.0.1"
-    execa: "npm:^7.1.1"
   languageName: unknown
   linkType: soft
 
@@ -7181,13 +7170,6 @@ __metadata:
   version: 4.0.0
   resolution: "yallist@npm:4.0.0"
   checksum: 2286b5e8dbfe22204ab66e2ef5cc9bbb1e55dfc873bbe0d568aa943eb255d131890dfd5bf243637273d31119b870f49c18fcde2c6ffbb7a7a092b870dc90625a
-  languageName: node
-  linkType: hard
-
-"yaml@npm:^1.10.2":
-  version: 1.10.2
-  resolution: "yaml@npm:1.10.2"
-  checksum: 5c28b9eb7adc46544f28d9a8d20c5b3cb1215a886609a2fd41f51628d8aaa5878ccd628b755dbcd29f6bb4921bd04ffbc6dcc370689bb96e594e2f9813d2605f
   languageName: node
   linkType: hard
 

@@ -2,9 +2,6 @@
 uri = "."
 
 [[dependencies]]
-uri = "docker://docker.io/monstrs/buildpack-yarn-install:0.0.3"
-
-[[dependencies]]
 uri = "docker://docker.io/monstrs/buildpack-yarn-cache:0.0.3"
 
 [[dependencies]]

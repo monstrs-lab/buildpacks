@@ -11,11 +11,6 @@ include_files = ["buildpack.toml"]
 [[order]]
 
 [[order.group]]
-id = "tech.monstrs.buildpacks.yarn-install"
-optional = true
-version = "0.0.3"
-
-[[order.group]]
 id = "tech.monstrs.buildpacks.yarn-cache"
 optional = true
 version = "0.0.3"

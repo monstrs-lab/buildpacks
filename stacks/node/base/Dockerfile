@@ -1,4 +1,4 @@
-FROM node:19.9-buster-slim
+FROM node:22-slim
 
 ARG cnb_uid=1001
 ARG cnb_gid=1001

@@ -1,4 +1,4 @@
-api = "0.6"
+api = "0.10"
 
 [buildpack]
 id = "tech.monstrs.buildpacks.yarn-workspace-start"

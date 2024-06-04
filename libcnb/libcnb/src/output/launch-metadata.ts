@@ -32,9 +32,7 @@ export class LaunchMetadata {
 
     return new LaunchMetadata(
       labels.map((label) => new Label(label.key, label.value)),
-      processes.map(
-        (processe) => new Process(processe.type, processe.command, processe.args, processe.direct)
-      ),
+      processes.map((processe) => new Process(processe.type, processe.command, processe.args)),
       slices.map((slice) => new Slice(slice.paths)),
       bom.map((bomEntry) => new BOMEntry(bomEntry.name, bomEntry.metadata))
     )
@@ -52,7 +50,6 @@ export class LaunchMetadata {
           type: process.type,
           command: process.command,
           args: process.args,
-          direct: process.direct,
           default: process.default,
         })),
         slices: this.slices.map((slice) => ({ paths: slice.paths })),

@@ -23,7 +23,7 @@ export class YarnWorkspaceStartBuilder implements Builder {
 
     const result = new BuildResult()
 
-    result.launchMetadata.processes.push(new Process('web', 'node', ['dist/index.js'], true, true))
+    result.launchMetadata.processes.push(new Process('web', ['node'], ['dist/index.js'], true))
     result.layers.push(nodeOptionsLayer)
 
     return result

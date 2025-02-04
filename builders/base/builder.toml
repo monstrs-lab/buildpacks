@@ -1,5 +1,34 @@
 [[order]]
 
+[build]
+image = "monstrs/stack-node:build"
+
+[run]
+[[run.images]]
+image = "monstrs/stack-node:run"
+
+[[extensions]]
+id = "tech.monstrs.extensions.ffmpeg"
+uri = "docker://docker.io/monstrs/buildpack-extension-ffmpeg:0.0.1"
+
+[[extensions]]
+id = "tech.monstrs.extensions.ghostscript"
+uri = "docker://docker.io/monstrs/buildpack-extension-ghostscript:0.0.1"
+
+[[extensions]]
+id = "tech.monstrs.extensions.graphicsmagick"
+uri = "docker://docker.io/monstrs/buildpack-extension-graphicsmagick:0.0.1"
+
+[[order-extensions]]
+[[order-extensions.group]]
+id = "tech.monstrs.extensions.ffmpeg"
+
+[[order-extensions.group]]
+id = "tech.monstrs.extensions.ghostscript"
+
+[[order-extensions.group]]
+id = "tech.monstrs.extensions.graphicsmagick"
+
 [stack]
 id = "tech.monstrs.stacks.node"
 run-image = "monstrs/stack-node:run"

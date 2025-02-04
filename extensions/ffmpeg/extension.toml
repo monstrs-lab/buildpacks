@@ -1,0 +1,10 @@
+# Buildpack API version
+api = "0.10"
+
+# Extension ID and metadata
+[extension]
+id = "tech.monstrs.extensions.ffmpeg"
+version = "0.0.1"
+name = "FFmpeg Extension"
+homepage = "https://github.com/monstrs/buildpacks/tree/master/extensions/ffmpeg"
+description = "Installs FFmpeg on the runtime base image"

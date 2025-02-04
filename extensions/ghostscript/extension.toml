@@ -1,0 +1,10 @@
+# Buildpack API version
+api = "0.10"
+
+# Extension ID and metadata
+[extension]
+id = "tech.monstrs.extensions.ghostscript"
+version = "0.0.1"
+name = "Ghostscript Extension"
+homepage = "https://github.com/monstrs/buildpacks/tree/master/extensions/ghostscript"
+description = "Installs Ghostscript on the runtime base image"

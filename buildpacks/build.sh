@@ -3,6 +3,10 @@ set -e
 
 cwd=$PWD
 
+cd "${cwd}/require-extension" && pack buildpack package monstrs/buildpack-require-extension:0.0.3 --config ./package.toml
+
+docker push monstrs/buildpack-require-extension:0.0.3
+
 yarn workspace @monstrs/buildpack-yarn-cache build
 cd "${cwd}/yarn-cache" && pack buildpack package monstrs/buildpack-yarn-cache:0.0.3 --config ./package.toml
 

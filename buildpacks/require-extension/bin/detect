@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -eo pipefail
+
+plan_path=$2
+echo "Plan path: $plan_path"
+
+echo "BP_REQUIRE: $BP_REQUIRE"
+
+echo "BP_REQUIRE array: ${BP_REQUIRE}"
+
+# 2. DECLARE DEPENDENCIES (OPTIONAL)
+if [[ "${BP_REQUIRE}" == *"ffmpeg"* ]]; then
+  cat >>"${plan_path}" <<EOL
+[[requires]]
+name = "ffmpeg"
+EOL
+fi
+
+if [[ "${BP_REQUIRE}" == *"ghostscript"* ]]; then
+  cat >>"${plan_path}" <<EOL
+[[requires]]
+name = "ghostscript"
+EOL
+fi
+
+if [[ "${BP_REQUIRE}" == *"graphicsmagick"* ]]; then
+  cat >>"${plan_path}" <<EOL
+[[requires]]
+name = "graphicsmagick"
+EOL
+fi

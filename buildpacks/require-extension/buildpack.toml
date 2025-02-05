@@ -1,0 +1,9 @@
+api = "0.10"
+
+[buildpack]
+id = "tech.monstrs.buildpacks.require-extension"
+version = "0.0.3"
+name = "Extensions requirer"
+
+[metadata]
+include_files = ["bin/build", "bin/detect", "buildpack.toml"]
